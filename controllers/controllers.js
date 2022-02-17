@@ -2,7 +2,8 @@ const jwt = require('jsonwebtoken');
 
 const controller = (User) => {
   const getObj = async (req, res) => {
-    const response = await User.find();
+    const {query} = req;
+    const response = await User.find(query);
     res.json(response);
   };
 
@@ -77,7 +78,7 @@ const controller = (User) => {
       lastName: savedUser.lastName,
     };
 
-    return jwt.sign(tokenPayLoad, 'ultraSecreto', {expiresIn: '1hr'});
+    return jwt.sign(tokenPayLoad, 'ultraSecreto');
   };
 
 

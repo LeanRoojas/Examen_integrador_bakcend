@@ -11,7 +11,6 @@ const bodySchema = Joi.object({
   password: Joi.string().alphanum().min(8).required(),
 });
 
-
 const routes = (User) => {
   const userRouter = express.Router();
 
