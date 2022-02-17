@@ -1,15 +1,8 @@
 /* eslint-disable new-cap */
 const express = require('express');
 const controller = require('../controllers/controllers');
-const Joi = require('joi');
-const validtor = require('express-joi-validation').createValidator();
-
-const bodySchema = Joi.object({
-  firsName: Joi.string().required(),
-  lastName: Joi.string().required(),
-  userName: Joi.string().alphanum().required(),
-  password: Joi.string().alphanum().min(8).required(),
-});
+const userSchema = require('../validations/userValidation');
+const validator = require('express-joi-validation').createValidator();
 
 const routes = (User) => {
   const userRouter = express.Router();
@@ -19,11 +12,11 @@ const routes = (User) => {
 
   userRouter.route('/users')
       .get(getObj)
-      .post(postObj);
+      .post(validator.body(userSchema), postObj);
 
   userRouter.route('/users/:userId')
       .get(getById)
-      .put(putUser)
+      .put(validator.body(userSchema), putUser)
       .delete(deleteObj);
 
   userRouter.route('/users/login')
