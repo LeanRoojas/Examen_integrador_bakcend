@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 
 const controller = (User) => {
   const getObj = async (req, res) => {
@@ -9,6 +10,8 @@ const controller = (User) => {
 
   const postObj = async (req, res) => {
     const user = new User(req.body);
+    user.password = await bcrypt.hash( user.password, 2);
+
     await user.save();
     res.json(user);
   };
@@ -27,7 +30,7 @@ const controller = (User) => {
             firsName: body.firsName,
             lastName: body.lastName,
             userName: body.userName,
-            password: body.password,
+            password: await bcrypt.hash( body.password, 10),
             email: body.email,
             address: body.address,
             phone: body.phone,
@@ -83,17 +86,22 @@ const controller = (User) => {
 
 
   const postLogin = async (req, res)=> {
-    const body = req.body;
-    let response;
-    const savedUser = await User.findOne({userName: body.userName});
+    const {body} = req;
+    let response = await User.findOne({
+      'userName': body.userName,
+    });
 
-    if (savedUser && savedUser.password === body.password) {
+    if (!response) {
+      console.log('no encuentra la wea');
+      res.status(401).json('Invalid Credentials...');
+    } else if (await bcrypt.compare(body.password, response.password)) {
+      const savedUser = response;
       const token = generateToken(savedUser);
-      response = {message: 'OK', token};
+      response = {message: 'TODO OK...', token};
+      res.json(response);
     } else {
-      response = {message: 'Invalid Credential'};
+      res.status(401).json('Invalid Credentials...');
     }
-    res.json(response);
   };
 
   const validateToken = async (req, res) => {
