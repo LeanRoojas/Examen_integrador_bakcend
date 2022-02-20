@@ -11,7 +11,6 @@ const controller = (User) => {
   const postObj = async (req, res) => {
     const user = new User(req.body);
     user.password = await bcrypt.hash( user.password, 2);
-
     await user.save();
     res.json(user);
   };
@@ -45,35 +44,6 @@ const controller = (User) => {
     res.json('Item has been deleted successfully...');
   };
 
-  // Book Controlls
-
-  const getBookById = async (req, res) => {
-    const response = await User.findById(req.params.bookId);
-    res.json(response);
-  };
-
-  const putBook = async (req, res) => {
-    const {body} = req;
-    const response = await User.findByIdAndUpdate(
-        {_id: req.params.bookId},
-        {
-          $set: {
-            title: body.title,
-            genre: body.genre,
-            author: body.author,
-            read: body.read,
-          },
-        },
-    );
-    res.json(response);
-  };
-
-  const deleteBook = async (req, res) => {
-    await User.findByIdAndDelete(req.params.bookId);
-    res.json('Book has been deleted successfully...');
-  };
-
-
   const generateToken = (savedUser) => {
     const tokenPayLoad = {
       firsName: savedUser.firsName,
@@ -104,14 +74,8 @@ const controller = (User) => {
     }
   };
 
-  const validateToken = async (req, res) => {
-    const token = req.headers.token;
-    const decoded = jwt.verify(token, 'ultraSecreto');
-    res.json(decoded);
-  };
-
   // eslint-disable-next-line max-len
-  return {getObj, getById, getBookById, postObj, putUser, putBook, deleteObj, deleteBook, postLogin, validateToken};
+  return {getObj, getById, postObj, putUser, deleteObj, postLogin};
 };
 
 module.exports = controller;

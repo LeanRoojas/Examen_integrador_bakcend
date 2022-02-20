@@ -8,7 +8,7 @@ const routes = (User) => {
   const userRouter = express.Router();
 
   // eslint-disable-next-line max-len
-  const {getObj, postObj, getById, putUser, deleteObj, postLogin, validateToken} = controller(User);
+  const {getObj, postObj, getById, putUser, deleteObj, postLogin} = controller(User);
 
   userRouter.route('/users')
       .get(getObj)
@@ -22,8 +22,6 @@ const routes = (User) => {
   userRouter.route('/users/login')
       .post(postLogin);
 
-  userRouter.route('/login/validate')
-      .get(validateToken);
   return userRouter;
 };
 

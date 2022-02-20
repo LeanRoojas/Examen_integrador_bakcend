@@ -1,13 +1,14 @@
 /* eslint-disable new-cap */
 const express = require('express');
-const controller = require('../controllers/controllers');
+const bookControllers = require('../controllers/bookControllers');
 const bookSchema = require('../validations/bookValidation');
 const validator = require('express-joi-validation').createValidator();
 
 const routes = (Book) => {
   const bookRouter = express.Router();
 
-  const {getObj, postObj, getBookById, deleteBook, putBook} = controller(Book);
+  // eslint-disable-next-line max-len
+  const {getObj, postObj, getBookById, deleteBook, putBook} = bookControllers(Book);
 
   bookRouter.route('/books')
       .get(getObj)
