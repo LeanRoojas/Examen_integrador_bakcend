@@ -1,6 +1,6 @@
 /* eslint-disable new-cap */
 const express = require('express');
-const controller = require('../controllers/controllers');
+const controller = require('../controllers/userControllers');
 const userSchema = require('../validations/userValidation');
 const validator = require('express-joi-validation').createValidator();
 
