@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="./assets/images/Book_JE2_BE2.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="./index.css">
+  <title>My Little Library</title>
+</head>
+<body>
+
+  <header>
+    <h1 class="title">My Little Library</h1>
+    <div class="search-bar">
+      <input type="text" name="search" placeholder="Seach" id="search">
+      <button> <i class="fa-solid fa-magnifying-glass"></i> </button>
+    </div>
+  </header>
+
+  <main>
+    <section id = "show-books">
+        <div>
+          <h3>Title: The Lord of the Rings</h3>
+          <h4>Author: R.R Tolkien</h4>
+          <h4>Genre: Fantasy</h4>
+          <h4>Read: Not yet</h4>
+          <h6>id: 15314213524321</h6>
+
+        </div>
+
+    </section>
+
+    <section id = "controlls">
+      <form id="form">
+        <button id="save-button">SAVE</button><br>
+        <input type="text" placeholder="Title" required>
+        <input type="text" placeholder="Author" required>
+        <input type="text" placeholder="Genre" required>
+        <input type="text" placeholder="Read?" required>
+
+      </form>
+
+      <form id="form">
+        <button id="upload-button">UPLOAD</button><br>
+        <input type="text" placeholder="ID" required>
+        <input type="text" placeholder="Title" required>
+        <input type="text" placeholder="Author" required>
+        <input type="text" placeholder="Genre" required>
+        <input type="text" placeholder="Read?" required>
+
+      </form>
+
+    </section>
+  </main>
+</body>
+
+<script type="module" src="../index.js"></script>
+</html>

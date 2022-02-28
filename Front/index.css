@@ -1,0 +1,54 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+body{
+  background-image: url(./assets/images/bacground.png);
+  background-size: cover;
+}
+
+header{
+  padding: .5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+header > h1{
+  margin: .5rem;
+  color: white;
+  
+}
+
+main{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+main > section {
+  background-color: rgba(255, 255, 255, .3);
+  padding: 2rem;
+  width: 40%;
+  height: 70vh;
+ 
+}
+
+main > section > form{
+  padding: 1rem;
+}
+
+main > section > div{
+  margin: 1rem;
+  color: #FFFFFF;
+  text-shadow: 4px 3px 0 black;
+}
+
+#show-books{
+  overflow-y: scroll;
+}
